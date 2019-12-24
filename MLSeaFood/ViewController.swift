@@ -51,11 +51,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let request = VNCoreMLRequest(model: model) { (request, error) in
             guard let results = request.results as? [VNClassificationObservation] else {fatalError("couldn't cast into vn classification observation")}
             if let firstResult = results.first {
-                if firstResult.identifier.contains("hotdog"){
-                    self.navigationItem.title = "HotDog!"
-                } else {
-                    self.navigationItem.title = "Not HotDog!"
-                }
+                self.navigationItem.title = "\(firstResult.identifier) - \(firstResult.confidence)"
+                
             }
         }
         
